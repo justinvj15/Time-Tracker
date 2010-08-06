@@ -2,7 +2,8 @@ class ClientsController < ApplicationController
    before_filter :login_required
    before_filter :admin_required
     
-  def index 
+  def index
+    puts "hai"
     @clients=@current_user.clients
   end
 
