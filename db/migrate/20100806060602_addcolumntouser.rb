@@ -1,9 +1,9 @@
 class Addcolumntouser < ActiveRecord::Migration
   def self.up
-    add_column :users, :admin_id, :integer
+    add_column :users, :AdminId, :integer
   end
 
   def self.down
-  remove_column :users, :admin_id, :integer
+  remove_column :users, :AdminId, :integer
   end
 end

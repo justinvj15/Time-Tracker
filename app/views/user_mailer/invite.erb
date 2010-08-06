@@ -4,7 +4,7 @@
   </head>
   <body>
     <p>hi</p>
-<p><%=@sender.email%> has requested you to signup in time tracking application</p>
-    <p>Clich this link to signup <%= signup_url(:val => @sender.id)%></p>
+<p><%#=@invitation.user_id.email%>You has requested you to signup in time tracking application</p>
+    <p>Clich this link to signup <%= signup_url(:val => @invitation.id)%></p>
       </body>
 </html>

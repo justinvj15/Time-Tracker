@@ -3,7 +3,6 @@ class ClientsController < ApplicationController
    before_filter :admin_required
     
   def index
-    puts "hai"
     @clients=@current_user.clients
   end
 

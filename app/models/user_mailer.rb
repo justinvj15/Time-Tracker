@@ -5,10 +5,10 @@ def notifytask(task)
   subject "New task assigned to you"
   body :task=>task
 end
-def invite(email,sender)
-  recipients email
+def invite(invitation)
+  recipients invitation.email
   from "Project Manager time tracking application"
   subject "You are invited to time tracking application"
-  body :sender=>sender
+  body :invitation=>invitation
 end
 end

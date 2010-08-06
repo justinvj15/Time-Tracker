@@ -11,7 +11,14 @@ class MembersController < ApplicationController
   end
 
   def invited
-  UserMailer.deliver_invite(params[:member][:email],current_user)
+  @invitation=current_user.invitations.new(params[:member])
+  if @invitation.save
+    flash[:notice]="Member invitations saved"
+  else
+    flash[:notice]="member invitations not saved"
+  end
+  puts @invitation.id
+  UserMailer.deliver_invite(@invitation)
     flash[:notice]="Invitation email send"
   redirect_to members_path
   end

@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
 has_many :tasks
 has_many :clients
 has_many :projects
+has_many :invitations
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.  
