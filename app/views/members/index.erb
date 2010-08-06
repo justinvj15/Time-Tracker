@@ -1,0 +1,15 @@
+<h3><%=link_to 'Invite Member', invite_member_members_path%></h3>
+<table border="1" width="100%"><tr>
+      <th><font color="black">Member Name</th><th>Member Email</th><th>Status</th></font>
+   </tr>
+    <%@users.each do |user| %>
+   <tr>
+    <td><%=user.login%></td><td><%=user.email%></td>
+    <%if user.roles=='1'%>
+    <td>Team Member</td>
+    <%else%>
+    <td>Project Manager</td>
+   </tr>
+    <%end%>
+       <%end%>
+      </table>

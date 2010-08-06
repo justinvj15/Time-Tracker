@@ -1,0 +1,20 @@
+<p>  <b>Project Name:</b>
+<%=h @project.name %> </p>
+<p>  <b>Description:</b>
+<%=h @project.description %> </p>
+<p>  <b>Client:</b>
+<%=h @project.client.name %></p>
+     <%if !@tasks.blank?%>
+<table><tr>
+      </tr></table>
+    <%@tasks.each do |task| %>
+<table class="table">
+   <tr><td><font color="black"><b>Tasks Name:</b></td></font>
+     <td><%=task.name%></td></tr>
+  <td><font color="black"><b>Assigned Member:</b></td>   
+   <td><%=task.user.login%></td>
+            <%end%>
+      </table>
+    <%else%>
+<p>No Tasks Found</p>
+<%end%>

@@ -1,0 +1,17 @@
+     <h3><%=link_to 'Create new project',new_project_path%></h3>
+     <%if !@projects.blank?%>
+<table border="1" width="100%"><tr>
+      <th><font color="black">Project Name</th><th>Project Description</th><th>Client</th></font>
+   </tr>
+    <%@projects.each do |project| %>
+   <tr>
+    <td><%=project.name%></td><td><%=project.description%></td><td><%=project.client.name%></td><%#=project.description%>
+    
+      <td><%=link_to 'details',project_path(project)%></td>
+      <td><%=link_to 'edit',edit_project_path(project)%></td>
+      <td><%=link_to 'delete',project_path(project),:confirm=>'Are you sure to delete this project',:method=>:delete%></td>
+                            <%end%>
+      </table>
+    <%else%>
+<p>No Projects Found</p>
+<%end%>

@@ -1,0 +1,5 @@
+<h1>Create Project</h1>
+<% form_for :project, :url =>  projects_path, :html => { :method => :POST } do |f|%>
+<%=  render :partial => 'form', :locals => { :f => f } %>
+  <p> <%= submit_tag 'Create' %></p>
+<% end %>

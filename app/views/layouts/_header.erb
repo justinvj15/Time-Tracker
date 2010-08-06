@@ -1,0 +1,8 @@
+<p align="right">
+  <% if logged_in? %>
+ <%= link_to 'Logout', logout_path,:class=>"link" %><p align="right">Current User: <%=h current_user.login%></p>
+<table border="1"width="100%"><tr><td align="center"><%= link_to 'Projects', projects_path%></td><td align="center"><%= link_to 'Tasks', tasks_path%></td><td align="center"><%= link_to 'Clients', clients_path%></td><td align="center"><%= link_to 'Reports', reports_path%></td><td align="center"><%= link_to 'Members', members_path%></td></tr>
+</table>
+<% else %>
+ <%= link_to 'Login', login_path,:class=>"link" %></p>
+<% end %>

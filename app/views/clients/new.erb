@@ -1,0 +1,8 @@
+<h1>Create Client</h1>
+<% form_for :client, :url =>  clients_path, :html => { :method => :POST } do |f|%>
+<p> <%= f.label :Name %></p>
+  <p><%= f.text_field :name %></p>
+  <p> <%=  f.label :Description %></p>
+  <p><%= f.text_area :description %></p>
+  <p> <%= submit_tag 'Create' %></p>
+<% end %>

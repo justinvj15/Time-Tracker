@@ -1,0 +1,22 @@
+
+<h3><%=link_to 'Create new client',new_client_path%></h3>
+     <%if !@clients.blank?%>
+<table border="1" width="100%">
+   <tr>
+      <th><font color="black">Clients Name</th><th>Client Description</th></font>
+    </tr>
+    <%@clients.each do |client| %>
+  <tr>
+    <td class="inplace-editor" id="<%=client.id%>"><%=client.name%></td><td class="inplace-editor" id=<%=client.id%>><%=client.description%></td>
+       <td><%=link_to 'delete',client_path(client),:confirm=>'Are you sure to delete this client',:method=>:delete%></td>
+    </tr>
+    <%end%>
+    </table>
+    <%else%>
+<p>No clients Found</p>
+<%end%>
+<script type="text/javascript">
+	    $(".inplace-editor").editInPlace({
+	        url: "/clients/update"
+	    });
+	</script>

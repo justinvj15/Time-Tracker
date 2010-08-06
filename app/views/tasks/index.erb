@@ -1,0 +1,16 @@
+     <h3><%=link_to 'Create new task',new_task_path%></h3>
+      
+     <%if !@tasks.blank?%>
+<table border="1" width="100%"><tr>
+    <th><font color="black">Task Name</th><th>Task Description</th><th>Duration</th><th>Member</th><th>Project</th></font>
+   </tr>
+    <%@tasks.each do |task| %>
+   <tr>
+    <td><%=task.name%></td><td><%=task.description%></td><td><%=task.duration%></td><td><%=task.user.login%></td><td><%=task.project.name%></td>
+    <td><%=link_to 'edit',edit_task_path(task)%></td>
+    <td><%=link_to 'delete',task_path(task),:confirm=>'Are you sure to delete this task',:method=>:delete%></td>
+       <%end%>
+      </table>
+    <%else%>
+<p>No Task Found</p>
+<%end%>

@@ -1,0 +1,6 @@
+<p> <%= f.label :Name %></p>
+  <p><%= f.text_field :name %></p>
+  <p> <%=  f.label :Description %></p>
+  <p><%= f.text_area :description %></p>
+  <p><%=  f.label :Client %></p>
+<p><%= collection_select(:project,:client_id,Client.all,:id,:name)%> </p>

@@ -1,0 +1,10 @@
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>hi</p>
+<p><%=@sender.email%> has requested you to signup in time tracking application</p>
+    <p>Clich this link to signup <%= signup_url(:val => @sender.id)%></p>
+      </body>
+</html>
