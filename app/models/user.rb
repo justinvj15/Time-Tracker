@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :name, :password, :password_confirmation
 
 
-has_many :tasks
+has_many :tasks, :dependent=>:destroy
 has_many :clients
 has_many :projects
 has_many :invitations

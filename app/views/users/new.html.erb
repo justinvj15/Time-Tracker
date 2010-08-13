@@ -13,8 +13,8 @@
 <% if params[:val].blank? %>
 <%= f.text_field :email %>
 <% else %>
-<%= f.text_field :email, :value => @invitation.email %>
-  <%#= f.hidden_field :AdminId,:value=>@invitation.user_id%>
+  <%= f.text_field :email, :value => @invitation.email,:readonly=> true%>
+  <%#= f.hidden_field :email,:value=>@invitation.email%>
 
 </p>
 <% end %>

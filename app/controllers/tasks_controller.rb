@@ -1,11 +1,15 @@
 class TasksController < ApplicationController
   before_filter :login_required 
   def index
-    @tasks= @current_user.tasks
+    @projects= @current_user.projects
+    #@tasks= @tasks.find(:all,:condition=>["project_id=?",'#{@project.id}'])
+    #@member=
+    #@users=@tasks.user.find(:all)
+
   end
 
   def new
-   @task=Task.new
+   @task=current_user.tasks.new
      #@task.project_id=params[:id]
   end
   
@@ -15,14 +19,20 @@ class TasksController < ApplicationController
 
   def create
      @task=Task.new(params[:task])
-   #@task.project_id=params[:id]
+     @task.user_id=params[:members][:user_id]     
     if @task.save
-   flash[:notice]="task saved"
-  UserMailer.deliver_notifytask(@task)
-  redirect_to tasks_path
+     puts params[:members][:member_id]
+     puts @task.id
+     #@member=Member.new
+     #@member.user_id=params[:members][:user_id]
+      #@member.task_id=@task.id
+      #@member.save
+      flash[:notice]="task saved"
+    UserMailer.deliver_notifytask(@task)
+    redirect_to tasks_path
     else
-  flash[:error]="task not saved"
-  render :action =>'new'
+    flash[:error]="task not saved"
+    render :action =>'new'
     end
   end
 
@@ -46,5 +56,24 @@ class TasksController < ApplicationController
     flash[:error]="Task not deleted"
     render :action=>'index'
       end
+  end
+  def save_time
+puts params[:disp]
+puts params[:id]
+@task=Task.find(params[:id])
+@old=@task.time
+puts @old
+@task.time=params[:disp]
+if @task.save
+  flash[:notice]="Time saved"
+  redirect_to tasks_path
+else
+  flash[:error]="Time not saved"
+  render:action=>show
+end
+  end
+
+  def show
+    @task=Task.find(params[:id])
   end
 end

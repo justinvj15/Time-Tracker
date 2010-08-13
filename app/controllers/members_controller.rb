@@ -1,10 +1,8 @@
 class MembersController < ApplicationController
    before_filter :login_required
+   before_filter :admin_required,:except => [:assigned_tasks]
   def index
-      if @current_user.roles=='1'
-  redirect_to dashboards_path
-      end
-     @users=User.find(:all)
+     @users=User.find(:all,:conditions => ["AdminId = '#{current_user.id}'"])
   end
 
   def invite_member
@@ -21,5 +19,20 @@ class MembersController < ApplicationController
   UserMailer.deliver_invite(@invitation)
     flash[:notice]="Invitation email send"
   redirect_to members_path
+  end
+  def assigned_tasks
+    #@tasks=Member.find(:all,:conditions=>["user_id= ?", current_user.id])
+    @tasks=Task.find(:all,:conditions=>["user_id= ?" && Task::Project::user_id !='#{current_user.id}','#{current_user.id}'])
+    end
+
+  def destroy
+    @member=User.find(params[:id])
+    if @member.destroy
+      flash[:notice]="Member Deleted"
+      redirect_to members_path
+    else
+      flash[:notice]="Member not deleted"
+      render:action=>index
+    end
   end
 end

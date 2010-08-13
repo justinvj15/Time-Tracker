@@ -7,10 +7,15 @@
     <%= javascript_include_tag :defaults %>
     <%= javascript_include_tag 'time' %>
     <%= javascript_include_tag :defaults, 'jquery' %>
-    <%= javascript_include_tag 'jquery.editinplace.js' %>     
+    <%= javascript_include_tag 'jquery.editinplace.js' %>
+    <%= javascript_include_tag 'stopwatch.js' %>
+    <%= stylesheet_link_tag "/javascripts/jscalendar-1.0/calendar-win2k-cold-1.css" %>
+  <%= javascript_include_tag "jscalendar-1.0/calendar.js" %>
+  <%= javascript_include_tag "jscalendar-1.0/lang/calendar-en.js" %>
+  <%= javascript_include_tag "jscalendar-1.0/calendar-setup.js" %>
   </head>
-  <body onload="init()" >
-    <div id="container">
+  <body onload="load()">
+      <div id="container">
       <table cellpadding="0" cellspacing="0" width="100%" class="div">
         <tr><td>
             <table cellpadding="0" cellspacing="0" width="100%">
@@ -36,4 +41,4 @@
       </table>
     </div>
   </body>
-</html>
+ </html>

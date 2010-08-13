@@ -6,7 +6,7 @@ module AuthenticatedSystem
       !!current_user
     end
 
-    def admin_required
+    def admin_required?
       current_user.roles=='0'
     end
     # Accesses the current user from the session.
@@ -56,6 +56,10 @@ module AuthenticatedSystem
       authorized? || access_denied
     end
 
+    def admin_required
+      admin_required? || access_denied_member
+    end
+
     # Redirect as appropriate when an access request fails.
     #
     # The default action is to redirect to the login screen.
@@ -70,6 +74,8 @@ module AuthenticatedSystem
           store_location
           redirect_to new_session_path
         end
+
+    
         # format.any doesn't work in rails version < http://dev.rubyonrails.org/changeset/8987
         # Add any other API formats here.  (Some browsers, notably IE6, send Accept: */* and trigger 
         # the 'format.any' block incorrectly. See http://bit.ly/ie6_borken or http://bit.ly/ie6_borken2
@@ -78,6 +84,10 @@ module AuthenticatedSystem
           request_http_basic_authentication 'Web Password'
         end
       end
+    end
+
+    def access_denied_member
+      redirect_to projects_path
     end
 
     # Store the URI of the current request in the session.

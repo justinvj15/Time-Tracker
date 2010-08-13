@@ -1,0 +1,14 @@
+<table border="1" width="100%"><tr>
+    <th><font color="black">Task Name</th><th>Task Description</th></font>
+   
+<%@tasks.each do |task| %>
+  <tr><td><%=task.name%></td><td><%=task.description%></td><td>
+<%#= f.text_field :task, :value => task.id,:readonly=> true%>
+    </td></tr>
+     <%end%>
+     <%form_for :time, :url =>  save_time_tasks_path do |f|%>
+  <tr><td colspan="6" align="center"><%=text_field_tag "disp"%><%= submit_tag 'Save Time'%></td></tr>
+    <%end%>
+  </tr>
+</table>
+

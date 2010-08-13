@@ -1,7 +1,14 @@
 <p align="right">
   <% if logged_in? %>
  <%= link_to 'Logout', logout_path,:class=>"link" %><p align="right">Current User: <%=h current_user.login%></p>
-<table border="1"width="100%" class="table"><tr><th align="center"><%= link_to 'Projects', projects_path%></th><th align="center"><%= link_to 'Tasks', tasks_path%></th><th align="center"><%= link_to 'Clients', clients_path%></th><th align="center"><%= link_to 'Reports', reports_path%></th><th align="center"><%= link_to 'Members', members_path%></th></tr>
+<table border="1"width="100%" class="table"><tr>
+    <th align="center"><%= link_to 'Projects', projects_path%></th><th align="center"><%= link_to 'Tasks', tasks_path%></th><th align="center"><%= link_to 'Clients', clients_path%></th><th align="center"><%= link_to 'Reports', reports_path%></th>
+    <%if current_user.roles=='0'%>   
+  <th align="center"><%= link_to 'Members', members_path%></th>
+  <%else%>
+  <th align="center"><%=link_to 'Assigned Tasks',assigned_tasks_members_path%></th>
+  </tr>
+  <%end%>
 </table>
 <% else %>
  <%= link_to 'Login', login_path,:class=>"link" %></p>

@@ -18,13 +18,9 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      if @current_user.roles=='1'
-      redirect_to dashboards_path
-      else
       redirect_to projects_path
       flash[:notice] = "Logged in successfully"
-      end
-    else
+      else
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]

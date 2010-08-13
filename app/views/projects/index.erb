@@ -1,6 +1,6 @@
      <h3><%=link_to 'Create new project',new_project_path%></h3>
      <%if !@projects.blank?%>
-<table class="table"><tr>
+<table border="1" width="100%" class="table"><tr>
       <th>Project Name</th><th>Project Description</th><th>Client</th>
    </tr>
     <%@projects.each do |project| %>

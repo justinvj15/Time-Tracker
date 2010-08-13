@@ -1,0 +1,18 @@
+<p>  <b>Task Name:</b>
+<%=h @task.name %> </p>
+<p>  <b>Description:</b>
+<%=h @task.description %> </p>
+<p>  <b>Duration:</b>
+<%=h @task.duration %> </p>
+<p>  <b>Member:</b>
+<%=h @task.user.login%> </p>
+<p> <b>Project:</b>
+<%=h @task.project.name%>
+</p>
+<%form_for :task,@task,:url => { :action => 'save_time', :id => @task.id } do |f|%>
+<table><td colspan="6" align="center"><%=text_field_tag 'disp','@task.id'%>
+ <%#=f.text_field_tag 'task','@task.id'%>
+<%=button_to_function "Start/Stop", "ss()"%></td>
+  <tr><td><%= submit_tag 'Save Time'%></td></tr>
+</table>
+    <%end%>

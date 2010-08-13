@@ -3,8 +3,48 @@
   <p> <%=  f.label :Description %></p>
   <p><%= f.text_area :description %></p>
   <p><%=  f.label :Project %></p>
-  <p><%= collection_select(:task,:project_id,Project.all,:id,:name)%> </p>
+  <p><%= collection_select(:task,:project_id,@projects=current_user.projects,:id,:name)%> </p>
    <p> <%=  f.label :Duration %></p>
   <p><%= f.text_field :duration %></p>
   <p> <%=  f.label :Member %></p>
-  <p><%= collection_select(:task,:user_id,User.all,:id,:login)%> </p>
+  <%puts current_user.roles%>
+  <%if current_user.roles=='0'%>
+  <p><%= collection_select(:members,:user_id,@users=User.find(:all,:conditions => ["AdminId = '#{current_user.id}'"]),:id,:login)%> </p>
+  <%else%>
+  <p><%= collection_select(:members,:user_id,@users=User.find(:all,:conditions => ["id = '#{current_user.id}'"]),:id,:login)%> </p>
+  <%end%>
+  <p> <%=  f.label :Start__Date %></p>
+  <table cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+  <tr>
+ <td><%=text_field_tag'f_date_c',:readonly => "true"%></td>
+ <td><img src="img.gif" id="f_trigger_c" style="cursor: pointer; border: 3px solid red;" title="Date selector"onmouseover="this.style.background='red';" onmouseout="this.style.background=''" /></td>
+  </tr>
+  </table>
+  <p> <%=  f.label :End__Date %></p>
+   <table cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+  <tr>
+ <td><input type="text" name="date" id="f_date_d" readonly="1" /></td>
+ <td><img src="img.gif" id="f_trigger_d" style="cursor: pointer; border: 3px solid red;" title="Date selector"onmouseover="this.style.background='red';" onmouseout="this.style.background=''" /></td>
+  </tr>
+  </table>
+  <script type="text/javascript">
+    Calendar.setup({
+        inputField     :    "f_date_c",     // id of the input field
+        ifFormat       :    "%B %e, %Y",      // format of the input field
+        button         :    "f_trigger_c",  // trigger for the calendar (button ID)
+        align          :    "Tl",           // alignment (defaults to "Bl")
+        singleClick    :    true
+    });
+</script>
+   <script type="text/javascript">
+    Calendar.setup({
+        inputField     :    "f_date_d",     // id of the input field
+        ifFormat       :    "%B %e, %Y",      // format of the input field
+        button         :    "f_trigger_d",  // trigger for the calendar (button ID)
+        align          :    "Tl",           // alignment (defaults to "Bl")
+        singleClick    :    true
+    });
+</script>
+
+
+ 

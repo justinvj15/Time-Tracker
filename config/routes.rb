@@ -4,12 +4,12 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.resources :users
-  map.resources :members, :collection => { :invite_member => :get,:invited => :put }
+  map.resources :members, :collection => { :invite_member => :get,:invited => :put,:assigned_tasks=>:get }
   map.resource :session
 
   map.root :controller => 'sessions', :action => 'new'
   map.resources :projects
-  map.resources :tasks
+  map.resources :tasks,:collection=>{:save_time=>:post}
   map.resources :dashboards
   map.resources :reports
   map.resources :clients

@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
    before_filter :login_required
-   before_filter :admin_required
+  
     
   def index
     @clients=@current_user.clients

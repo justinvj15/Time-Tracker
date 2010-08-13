@@ -7,9 +7,10 @@
     <td><%=user.login%></td><td><%=user.email%></td>
     <%if user.roles=='1'%>
     <td>Team Member</td>
+    <td><%=link_to 'Delete',member_path(user),:confirm=>'Are you sure to delete this project',:method=>:delete%></td>
     <%else%>
     <td>Project Manager</td>
-   </tr>
+       </tr>
     <%end%>
        <%end%>
       </table>
